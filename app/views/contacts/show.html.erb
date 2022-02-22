@@ -7,10 +7,11 @@
 
 <p><a href="/companies/<%= @contact.company.id %>">Back to <%= @contact.company.name %></a></p>
 
+<% if @current_user%>
 <h3>Sales Activity</h3>
 
 <ul>
-  <% for activity in @contact.activities %>
+  <% for activity in @contact.activities.where({user_id: @current_user.id}) %>
     <li>
       <%= activity.activity_type %>
       with <%= activity.contact.first_name %> <%= activity.contact.last_name %>
@@ -33,4 +34,5 @@
     <%= form.text_area "note" %>
   </p>
   <%= form.submit %>
+<% end %>
 <% end %>

@@ -11,6 +11,16 @@
 
   <body>
     <p>
+      <% if @current_user%>
+        Welcome <%= @current_user.first_name%>
+        <%= button_to "logout", "/sessions/logout", method: :delete %>
+      <% else %>
+        <a href= "/sessions/new"> Login </a>
+        or
+        <a href= "/users/new"> Signup </a>
+      <% end %>
+    </p>
+    <p>
       <%= flash[:notice] %>
     </p>
 
